@@ -1,0 +1,22 @@
+### ai_code.py
+# Ultimate-Breaker v1
+
+import math
+
+def multiply_numbers(a, b):   # Fixed: added missing comma
+    return a * b               # Fixed: changed addition to multiplication
+
+def divide_numbers(x, y):
+    if y == 0:                 # Fixed: added check for division by zero
+        return None             # Return None if division by zero is attempted
+    return x / y               # Fixed: change 0 to y for correct division
+
+def add_numbers(a, b):
+    return a + b               # Fixed: corrected indentation and spaces
+
+def used_function():             # Fixed: renamed and used function instead of unused
+    temp = 5
+    return temp                # Fixed: function has a return
+
+# Fixed: Replaced non-ASCII quotes with standard quotes
+broken = "this_will_fail"

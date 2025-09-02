@@ -1,0 +1,109 @@
+### ai_code.py
+```python
+def multiply_numbers(a, b):
+    """Multiply two numbers and return the result."""
+    return a * b
+```
+
+### controller_phase4.py
+```python
+import subprocess
+from pathlib import Path
+import time
+import re
+
+MAX_ATTEMPTS = 5
+CODE_FILE = Path("ai_code.py")
+TEST_FILE = Path("test_ai_code.py")
+HISTORY_DIR = Path("fix_history")
+HISTORY_DIR.mkdir(exist_ok=True)
+
+def run_tests():
+    """Run pytest and return (passed, output)."""
+    try:
+        result = subprocess.run(
+            ["pytest", "-q", str(TEST_FILE)],
+            capture_output=True, text=True, timeout=10
+        )
+        return result.returncode == 0, result.stdout + result.stderr
+    except subprocess.TimeoutExpired:
+        return False, "❌ Timeout running tests"
+
+def run_lint():
+    """Run pylint and return numeric score."""
+    try:
+        result = subprocess.run(
+            ["pylint", CODE_FILE],
+            capture_output=True, text=True, timeout=10
+        )
+        match = re.search(r"rated at (-?\d+\.\d+)/10", result.stdout)
+        return float(match.group(1)) if match else 0.0, result.stdout
+    except subprocess.TimeoutExpired:
+        return 0.0, "❌ Timeout running pylint"
+
+def sanitize_code():
+    """Remove fences and junk before pytest runs."""
+    text = CODE_FILE.read_text(encoding="utf-8", errors="ignore")
+    CODE_FILE.write_text(text.strip() + "\n", encoding="utf-8")
+
+def fixer_agent(error_log: str, attempt: int):
+    """Multi-stage fixer that escalates each attempt."""
+    text = CODE_FILE.read_text(encoding="utf-8", errors="ignore")
+
+    # Stage 1: Clean syntax
+    text = re.sub(r"(def [^\(]+\([^)]*\))\s*\n", r"\1:\n", text)
+
+    # Stage 2: Ensure return
+    if "return" not in text:
+        text = re.sub(
+            r"def multiply_numbers\(.*\):",
+            "def multiply_numbers(a, b):\n    return a * b",
+            text
+        )
+
+    # Stage 3: Hard reset fallback
+    if attempt == MAX_ATTEMPTS:
+        text = '''"""
+Fallback safe baseline implementation.
+"""
+
+def multiply_numbers(a: float, b: float) -> float:
+    """Multiply two numbers and return the result."""
+    return a * b
+'''
+
+    CODE_FILE.write_text(text.strip() + "\n", encoding="utf-8")
+
+def controller_loop():
+    attempt = 1
+    while attempt <= MAX_ATTEMPTS:
+        print(f"\n=== Attempt {attempt} ===")
+
+        sanitize_code()
+
+        passed, test_output = run_tests()
+        lint_score, lint_output = run_lint()
+
+        if passed and lint_score >= 7.0:
+            print(f"✅ SUCCESS: Tests + Lint passed (score {lint_score}) in {attempt} attempt(s)!")
+            return
+
+        if not passed:
+            print("❌ Tests failed, running fixer...")
+            fixer_agent(test_output, attempt)
+        elif lint_score < 7.0:
+            print(f"⚠️ Lint score too low ({lint_score}), running fixer...")
+            fixer_agent(lint_output, attempt)
+
+        # Save debug history
+        history_file = HISTORY_DIR / f"phase4_fix_attempt_{attempt}.txt"
+        history_file.write_text(test_output + "\n" + lint_output, encoding="utf-8")
+
+        attempt += 1
+        time.sleep(1)
+
+    print("💀 FAILURE: Could not fix after max attempts (fallback already applied).")
+
+if __name__ == "__main__":
+    controller_loop()
+```

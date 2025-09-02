@@ -1,0 +1,7 @@
+### ai_code.py
+"""
+Worst Example 2: Runtime crash with undefined variable
+"""
+
+def multiply_numbers(a, b):
+    return a * b   # Fixed the undefined variable 'bb' to 'b'

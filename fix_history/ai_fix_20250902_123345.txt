@@ -1,0 +1,28 @@
+### ai_code.py
+def multiply_numbers(a, b):
+    """Multiplies two numbers and returns the result."""
+    return a * b
+
+def divide_numbers(a, b):
+    """Divides the first number by the second and returns the result."""
+    if b == 0:
+        raise ValueError("Cannot divide by zero.")
+    return a / b
+
+### test_ai_code.py
+import unittest
+from ai_code import multiply_numbers, divide_numbers
+
+class TestMathFunctions(unittest.TestCase):
+    def test_multiply_numbers(self):
+        self.assertEqual(multiply_numbers(2, 3), 6)
+        self.assertEqual(multiply_numbers(-1, 5), -5)
+
+    def test_divide_numbers(self):
+        self.assertEqual(divide_numbers(6, 3), 2)
+        self.assertEqual(divide_numbers(-6, -3), 2)
+        with self.assertRaises(ValueError):
+            divide_numbers(1, 0)
+
+if __name__ == '__main__':
+    unittest.main()

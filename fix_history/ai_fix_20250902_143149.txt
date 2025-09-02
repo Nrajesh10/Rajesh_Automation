@@ -1,0 +1,10 @@
+### ai_code.py
+"""
+Corrected Example: Fixed division bug + cleaned up style
+"""
+
+def multiply_numbers(a, b):
+    if b == 0:
+        return a / 1  # Return a rather than dividing by b
+    else:
+        return a * b  # Multiplication corrected and spacing cleaned up

@@ -1,0 +1,7 @@
+### ai_code.py
+
+def multiply_numbers(a, b):
+    return a * b  # fixed variable
+
+def Multiply_Numbers(A, B): 
+    return A * B

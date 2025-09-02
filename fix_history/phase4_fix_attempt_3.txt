@@ -1,0 +1,23 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+____________________________ test_multiply_numbers ____________________________
+
+    def test_multiply_numbers():
+>       assert multiply_numbers(2, 3) == 6
+E       assert None == 6
+E        +  where None = multiply_numbers(2, 3)
+
+test_ai_code.py:5: AssertionError
+---------------------------- Captured stdout call -----------------------------
+Result is 6
+=========================== short test summary info ===========================
+FAILED test_ai_code.py::test_multiply_numbers - assert None == 6
+1 failed in 0.07s
+
+************* Module ai_code
+ai_code.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+ai_code.py:1:0: C0116: Missing function or method docstring (missing-function-docstring)
+
+------------------------------------------------------------------
+Your code has been rated at 3.33/10 (previous run: 3.33/10, +0.00)
+

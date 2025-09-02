@@ -1,0 +1,13 @@
+### ai_code.py
+```python
+def add_numbers(a, b):
+    return a + b  # Removed unknown_var since it was undefined
+```
+
+### helper.py
+```python
+def divide_numbers(a, b):
+    if b == 0:
+        raise ValueError("Cannot divide by zero!")
+    return a / b
+```

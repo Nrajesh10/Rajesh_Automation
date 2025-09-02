@@ -1,0 +1,16 @@
+### test_ai_code.py
+```python
+import pytest
+from ai_code import multiply_numbers, divide_numbers
+
+def test_multiply_numbers():
+    assert multiply_numbers(2, 3) == 6
+    assert multiply_numbers(-1, 5) == -5
+    assert multiply_numbers(0, 10) == 0
+
+def test_divide_numbers():
+    assert divide_numbers(10, 2) == 5
+    assert divide_numbers(9, 3) == 3
+    with pytest.raises(ValueError, match="Cannot divide by zero"):
+        divide_numbers(10, 0)
+```

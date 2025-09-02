@@ -1,0 +1,11 @@
+### ai_code.py
+```python
+"""
+This module contains a function to multiply two numbers.
+"""
+
+def multiply_numbers(a, b):
+    """Multiply two numbers and return the result."""
+    return a * b
+
+```

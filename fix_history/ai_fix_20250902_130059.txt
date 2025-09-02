@@ -1,0 +1,13 @@
+### ai_code.py
+def multiply_numbers(a: float, b: float) -> float:
+    """
+    Multiplies two numbers and returns the result.
+
+    Parameters:
+    a (float): The first number.
+    b (float): The second number.
+
+    Returns:
+    float: The product of the two numbers.
+    """
+    return a * b

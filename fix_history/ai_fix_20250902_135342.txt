@@ -1,0 +1,15 @@
+### ai_code.py
+
+"""
+This module contains functions for basic arithmetic operations.
+"""
+
+def multiply_numbers(a, b):
+    """Multiplies two numbers and returns the result."""
+    return a * b
+
+def extra():
+    """Prints a message with proper formatting."""
+    print("bad spacing")
+
+

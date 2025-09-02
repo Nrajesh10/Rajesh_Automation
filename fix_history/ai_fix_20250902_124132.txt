@@ -1,0 +1,17 @@
+### ai_code.py
+```python
+def multiply_numbers(a, b):
+    return a * b
+```
+
+### test_ai_code.py
+```python
+import pytest
+from ai_code import multiply_numbers
+
+def test_multiply_numbers():
+    assert multiply_numbers(2, 3) == 6
+    assert multiply_numbers(-1, 5) == -5
+    assert multiply_numbers(0, 10) == 0
+    assert multiply_numbers(7, 0) == 0
+```

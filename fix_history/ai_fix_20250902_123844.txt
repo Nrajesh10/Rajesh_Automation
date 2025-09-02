@@ -1,0 +1,5 @@
+### ai_code.py
+```python
+def multiply_numbers(a, b):
+    return a * b
+```

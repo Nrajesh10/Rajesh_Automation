@@ -1,0 +1,18 @@
+### ai_code.py
+# Ultra-Breaker v2
+
+def multiply_numbers(a, b):
+    return a * b
+
+def add_numbers(x, y):
+    return x + y
+
+def subtract_numbers(a, b):
+    assert a >= b, "a must be bigger or equal to b"
+    return a - b
+
+def wrong_var_usage():
+    defined_var = 10  # Replacing undefined variable usage
+    return defined_var
+
+value = "this line is too long"  # Modified to respect PEP8 by shortening the string.

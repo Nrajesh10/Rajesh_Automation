@@ -1,0 +1,25 @@
+### ai_code.py
+# Ultra-Breaker v2
+
+def multiply_numbers(a, b):
+    return a * b
+
+def add_numbers(x, y):
+    # Change to ensure proper concatenation
+    return str(x) + str(y)
+
+def subtract_numbers(a, b):
+    assert a > b, "a must be bigger"
+    return a - b
+
+def wrong_var_usage():
+    return None  # Replace undefined variable with `None`
+
+value = "this line is waaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaay too long" # PEP8 violation, consider breaking this line into smaller parts
+
+# Ensure the line is wrapped correctly based on PEP8 standards
+value = ("this line is waaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+         "aaaaay too long")  # Fixed PEP8 violation
+
+### filename.py
+(fixed code here)

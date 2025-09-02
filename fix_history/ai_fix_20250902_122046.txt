@@ -1,0 +1,8 @@
+### ai_code.py
+def multiply_numbers(a, b): 
+    return a * b  # corrected to perform multiplication
+
+def divide_numbers(a, b): 
+    if b == 0:
+        raise ZeroDivisionError("Cannot divide by zero.")  # changed ValueError to ZeroDivisionError
+    return a / b  # added function to perform division
